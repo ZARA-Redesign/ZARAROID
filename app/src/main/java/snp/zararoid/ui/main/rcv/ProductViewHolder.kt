@@ -1,4 +1,4 @@
-package snp.zararoid.rcv
+package snp.zararoid.ui.main.rcv
 
 import android.graphics.Paint
 import android.view.View

@@ -1,4 +1,4 @@
-package snp.zararoid.rcv
+package snp.zararoid.ui.main.rcv
 
 data class ProductData(
     val category: Int,  // 0:all , 1:Coats, 2:Puffers, 3:WaistCoats, 4:TrenchCoat

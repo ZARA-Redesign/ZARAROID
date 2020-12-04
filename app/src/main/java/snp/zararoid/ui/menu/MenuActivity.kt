@@ -1,23 +1,11 @@
-package snp.zararoid
+package snp.zararoid.ui.menu
 
 import android.content.Intent
-import android.graphics.Typeface
-import android.graphics.Typeface.BOLD
-import android.graphics.Typeface.NORMAL
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.annotation.ColorInt
-import androidx.annotation.FontRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlinx.android.synthetic.main.activity_menu.*
-import kotlinx.android.synthetic.main.fragment_product.*
+import snp.zararoid.R
+import snp.zararoid.ui.main.MainActivity
 
 
 class MenuActivity : AppCompatActivity() {
