@@ -60,8 +60,8 @@ class ProductFragment : Fragment() {
             ProductData(0, R.drawable.pro_img, 1, "FAUX SHEARLINF COAT", 40,149000, false),
             ProductData(0, R.drawable.img, 2, "CONTRAST PUFFER JACKET", 0,109000, false),
             ProductData(0, R.drawable.pro_img, 0, "WOOL BLEND COAT WITH BELT", 0,319000, false),
-                ProductData(0, R.drawable.pro_img, 1, "FAUX SHEARLINF COAT", 50,189000, false),
-                ProductData(0, R.drawable.img, 2, "CONTRAST PUFFER JACKET", 0,99000, false)
+            ProductData(0, R.drawable.pro_img, 1, "FAUX SHEARLINF COAT", 50,189000, false),
+            ProductData(0, R.drawable.img, 2, "CONTRAST PUFFER JACKET", 0,99000, false)
         )
 
 
@@ -74,7 +74,7 @@ class ProductFragment : Fragment() {
         }
 
         
-        //탭아이템에서 디폴트로 bold글씨체는 첫번째 아이템
+        //탭아이템에서 디폴트로 bold 글씨체는 첫번째 아이템
         changeSelectedTabItemFontFamily(0, R.font.inter_bold)
 
         tab_product.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
