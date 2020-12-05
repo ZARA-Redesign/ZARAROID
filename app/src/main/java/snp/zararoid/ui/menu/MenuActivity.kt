@@ -2,6 +2,8 @@ package snp.zararoid.ui.menu
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_menu.*
 import snp.zararoid.R
@@ -34,5 +36,6 @@ class MenuActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
     }
 }
