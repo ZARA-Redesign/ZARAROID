@@ -1,4 +1,4 @@
-package snp.zararoid.ui.main.rcv
+package snp.zararoid.ui.main.product.rcv
 
 import android.content.Context
 import android.view.LayoutInflater
