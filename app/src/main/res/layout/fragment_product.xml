@@ -16,42 +16,14 @@
         app:tabTextColor="#ffffff"
         app:tabTextAppearance="@style/TabLayoutTextStyle"
         app:tabSelectedTextColor="#ffffff"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="VIEW ALL" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="COATS" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PUFFERS" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="WAISTCOATS" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TRENCH COAT" />
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_product"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/rcv_viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:overScrollMode="never"
         app:layout_constraintTop_toBottomOf="@id/tab_product"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/product_item_small"/>
+        app:layout_constraintBottom_toBottomOf="parent">
+    </androidx.viewpager.widget.ViewPager>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
