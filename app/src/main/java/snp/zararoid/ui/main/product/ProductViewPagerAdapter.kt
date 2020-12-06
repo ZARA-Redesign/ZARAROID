@@ -8,10 +8,10 @@ class ProductViewPagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm
 
     override fun getItem(position: Int): Fragment = when(position) {
         0-> ProductListFragment()
-        1-> ProductListFragment()
-        2-> ProductListFragment()
-        3-> ProductListFragment()
-        4-> ProductListFragment()
+        1-> ProductListFragment("coats")
+        2-> ProductListFragment("puffers")
+        3-> ProductListFragment("waistcoats")
+        4-> ProductListFragment("trenchcoat")
         else->throw IllegalStateException("Unexpected position $position")
     }
 

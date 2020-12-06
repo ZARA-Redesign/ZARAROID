@@ -1,20 +1,18 @@
 package snp.zararoid.ui.main.product
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_product.*
 import snp.zararoid.R
-import snp.zararoid.ui.main.product.rcv.ProductAdapter
-import snp.zararoid.ui.main.product.rcv.ProductData
 
 
 class ProductFragment : Fragment() {
@@ -74,9 +72,9 @@ class ProductFragment : Fragment() {
             }
 
         })
-
-
     }
+
+
 
 
 

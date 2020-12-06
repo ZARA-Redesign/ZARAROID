@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_product_list.*
 import snp.zararoid.R
+import snp.zararoid.network.ZaraReDesign
+import snp.zararoid.network.response.ZaraProductResponse
+import snp.zararoid.network.response.customEnqueue
 import snp.zararoid.ui.main.product.rcv.ProductAdapter
-import snp.zararoid.ui.main.product.rcv.ProductData
 
-class ProductListFragment : Fragment() {
+class ProductListFragment(private val category: String? = null) : Fragment() {
     private lateinit var productAdapter: ProductAdapter
     private lateinit var rcvLayoutManager: GridLayoutManager
     override fun onCreateView(
@@ -23,35 +25,42 @@ class ProductListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        productAdapter = ProductAdapter(view.context)
+        productAdapter = ProductAdapter()
         rcvLayoutManager = GridLayoutManager(view.context, 2) // 한 줄에 2칸
         rcvLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             //한 줄에 아이템 2개>1개>2개>1개>... 구현할 것
             //0,1번째 아이템은 1칸씩 차지 / 2번째 아이템은 2칸 차지하면 됨.
             override fun getSpanSize(position: Int): Int {
-                var gridPosition: Int = position%3
-                return when(gridPosition){
-                    0-> 1
-                    1-> 1
-                    2-> 2
+                var gridPosition: Int = position % 3
+                return when (gridPosition) {
+                    0 -> 1
+                    1 -> 1
+                    2 -> 2
                     else -> 0
                 }
             }
         }
 
-        rcv_product.apply{
+        rcv_product.apply {
             adapter = productAdapter
             layoutManager = rcvLayoutManager
         }
 
-        productAdapter.data = mutableListOf(
-            ProductData(0, R.drawable.pro_img, 0, "WOOL BLEND COAT WITH BELT", 0,219000, false),
-            ProductData(0, R.drawable.pro_img, 1, "FAUX SHEARLINF COAT", 40,149000, false),
-            ProductData(0, R.drawable.img, 2, "CONTRAST PUFFER JACKET", 0,109000, false),
-            ProductData(0, R.drawable.pro_img, 0, "WOOL BLEND COAT WITH BELT", 0,319000, false),
-            ProductData(0, R.drawable.pro_img, 1, "FAUX SHEARLINF COAT", 50,189000, false),
-            ProductData(0, R.drawable.img, 2, "CONTRAST PUFFER JACKET", 0,99000, false)
-        )
+        requestToProductData()
+
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun requestToProductData() {
+        ZaraReDesign.service
+            .requestProductData(category = this.category)
+            .customEnqueue(
+                onSuccess = { onSuccessResponseEvent(it) }
+            )
+    }
+
+    private fun onSuccessResponseEvent(zaraProductResponse: ZaraProductResponse) {
+        productAdapter.data.addAll(zaraProductResponse.data)
+        productAdapter.notifyDataSetChanged()
     }
 }

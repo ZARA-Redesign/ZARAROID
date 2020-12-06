@@ -3,28 +3,32 @@ package snp.zararoid.ui.main.product.rcv
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import snp.zararoid.R
+import snp.zararoid.network.response.ProductData
 
-class ProductAdapter(private val context: Context): RecyclerView.Adapter<ProductViewHolder>() {
+class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>() {
     var data = mutableListOf<ProductData>()
-    var viewType: Int = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val view = when(viewType){
-            1 -> {LayoutInflater.from(context).inflate(R.layout.product_item_big, parent, false)}
-            else -> {LayoutInflater.from(context).inflate(R.layout.product_item_small, parent, false)}
+        return when (viewType) {
+            BIG_VIEW_TYPE -> makeProductViewHolder(R.layout.product_item_big, parent)
+            SMALL_VIEW_TYPE -> makeProductViewHolder(R.layout.product_item_small,parent)
+            else -> throw IllegalArgumentException("정상적이지 않은 뷰 타입입니다.")
         }
-        return ProductViewHolder(view)
     }
 
+    private fun makeProductViewHolder(
+        @LayoutRes layoutRes: Int,
+        parent: ViewGroup
+    ): ProductViewHolder = LayoutInflater.from(parent.context)
+        .inflate(layoutRes, parent, false)
+        .let { ProductViewHolder(it) }
+
+
     override fun getItemViewType(position: Int): Int {
-        if(position % 3 == 2){
-            viewType = 1
-        }else{
-            viewType = 0
-        }
-        return viewType
+        return if (position % 3 == 2) BIG_VIEW_TYPE else SMALL_VIEW_TYPE
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
@@ -32,5 +36,10 @@ class ProductAdapter(private val context: Context): RecyclerView.Adapter<Product
     }
 
     override fun getItemCount(): Int = data.size
+
+    companion object {
+        private const val BIG_VIEW_TYPE = 1
+        private const val SMALL_VIEW_TYPE = 0
+    }
 
 }
