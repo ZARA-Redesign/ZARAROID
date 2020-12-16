@@ -1,7 +1,7 @@
 package snp.zararoid.ui.main.product
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,30 +9,29 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_product.*
 import snp.zararoid.R
-import snp.zararoid.ui.main.product.rcv.ProductAdapter
-import snp.zararoid.ui.main.product.rcv.ProductData
+import snp.zararoid.ui.main.MainActivity
 
 
 class ProductFragment : Fragment() {
     private lateinit var productViewPagerAdapter: ProductViewPagerAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    private var param1: Int? = null
+    private var activity: MainActivity = MainActivity()
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_product, container, false)
+
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         productViewPagerAdapter = ProductViewPagerAdapter(childFragmentManager)
 
         rcv_viewpager.adapter = productViewPagerAdapter
@@ -68,8 +67,19 @@ class ProductFragment : Fragment() {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                when (tab_product.selectedTabPosition) {
+                    0 -> throwCategoryValue("")
+                    1 -> throwCategoryValue("coats")
+                    2 -> throwCategoryValue("puffers")
+                    3 -> throwCategoryValue("waistcoats")
+                    4 -> throwCategoryValue("trenchcoat")
+                    else -> throwCategoryValue("")
+                }
+
                 tab?.position?.let {
                     changeSelectedTabItemFontFamily(it, R.font.inter_bold)
+                    // Key, Value fragment.setArguments(bundle);
+
                 }
             }
 
@@ -77,7 +87,10 @@ class ProductFragment : Fragment() {
 
 
     }
-
+    fun throwCategoryValue(categoryData: String){
+        activity.passValue(categoryData)
+        Log.d("pass","Product")
+    }
 
 
 }

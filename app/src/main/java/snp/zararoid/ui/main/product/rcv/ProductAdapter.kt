@@ -20,9 +20,9 @@ class ProductAdapter(private val context: Context): RecyclerView.Adapter<Product
 
     override fun getItemViewType(position: Int): Int {
         if(position % 3 == 2){
-            viewType = 1
+            viewType = 1 // 한줄에 아이템 1개
         }else{
-            viewType = 0
+            viewType = 0 // 한줄에 아이템 2개
         }
         return viewType
     }
