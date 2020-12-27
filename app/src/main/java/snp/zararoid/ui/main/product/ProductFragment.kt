@@ -67,15 +67,6 @@ class ProductFragment : Fragment() {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                when (tab_product.selectedTabPosition) {
-                    0 -> throwCategoryValue("")
-                    1 -> throwCategoryValue("coats")
-                    2 -> throwCategoryValue("puffers")
-                    3 -> throwCategoryValue("waistcoats")
-                    4 -> throwCategoryValue("trenchcoat")
-                    else -> throwCategoryValue("")
-                }
-
                 tab?.position?.let {
                     changeSelectedTabItemFontFamily(it, R.font.inter_bold)
                     // Key, Value fragment.setArguments(bundle);
@@ -87,10 +78,4 @@ class ProductFragment : Fragment() {
 
 
     }
-    fun throwCategoryValue(categoryData: String){
-        activity.passValue(categoryData)
-        Log.d("pass","Product")
-    }
-
-
 }

@@ -22,12 +22,10 @@ import snp.zararoid.ui.network.ProductListResponseData
 import snp.zararoid.ui.network.ZaraReDesign
 
 
-class ProductListFragment : Fragment() {
+class ProductListFragment(private val category: String? = null) : Fragment() {
     private lateinit var productAdapter: ProductAdapter
     private lateinit var rcvLayoutManager: GridLayoutManager
-    private var category: String = ""
     private var rcvProductListData = mutableListOf<ProductData>()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +58,7 @@ class ProductListFragment : Fragment() {
             layoutManager = rcvLayoutManager
         }
 
-        val call: Call<ProductListResponseData> = ZaraReDesign.service.getProductData(cate = category)
+        val call: Call<ProductListResponseData> = ZaraReDesign.service.getProductData(cate = this.category)
         call.enqueue(object : Callback<ProductListResponseData> {
             override fun onFailure(call: Call<ProductListResponseData>, t: Throwable) {
                 //통신 실패 로직
@@ -108,11 +106,6 @@ class ProductListFragment : Fragment() {
 //            ProductData(0, R.drawable.img, 2, "CONTRAST PUFFER JACKET", 0,99000, false)
 //        )
 
-    }
-
-    fun receiveCategoryValue(categoryData: String){
-        category = categoryData
-        Log.d("pass","ProductList " + category)
     }
 
 }

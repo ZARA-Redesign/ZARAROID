@@ -10,7 +10,7 @@ interface ZaraService {
     @Headers("Content-Type:application/json")
     @GET("/")
     fun getProductData(
-        @Query("cate") cate: String = null?:""
+        @Query("cate") cate: String? = null?:""
     ) : Call<ProductListResponseData>
 
 }

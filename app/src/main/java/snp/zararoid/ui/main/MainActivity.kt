@@ -32,8 +32,4 @@ class MainActivity : AppCompatActivity() {
         startActivity(intentToChangeMenu)
     }
 
-    fun passValue(category: String){
-        fragmentProductList.receiveCategoryValue(category)
-        Log.d("pass", "Main "+ category)
-    }
 }
